@@ -8,6 +8,7 @@ argo()
     });
     handle('request', function(env, next) {
       env.request.headers['Referer'] = '';
+      env.request.headers['Origin'] = 'https://api.pol.is';
       console.log(env.request.headers);
       next(env);
     });
