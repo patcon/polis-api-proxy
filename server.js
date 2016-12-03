@@ -6,6 +6,9 @@ argo()
       env.response.setHeader('Access-Control-Allow-Origin', '*');
       next(env);
     });
+    handle('error', function(env, error, next) {
+      console.log(error.message);
+    });
   })
   .target('https://api.pol.is')
   .listen(process.env.PORT);
