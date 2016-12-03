@@ -5,6 +5,7 @@ argo()
     handle('response', function(env, next) {
       env.response.setHeader('Access-Control-Allow-Origin', '*');
       env.response.setHeader('Referer', '');
+      console.log(env.request.headers);
       next(env);
     });
     handle('error', function(env, error, next) {
