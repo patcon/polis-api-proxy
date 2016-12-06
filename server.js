@@ -4,7 +4,8 @@ argo()
   .use(function(handle) {
     handle('response', function(env, next) {
       env.response.setHeader('Access-Control-Allow-Origin', '*');
-      env.response.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+      env.response.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+      env.response.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, OPTIONS');
       next(env);
     });
     handle('request', function(env, next) {
