@@ -4,6 +4,7 @@ argo()
   .use(function(handle) {
     handle('response', function(env, next) {
       env.response.setHeader('Access-Control-Allow-Origin', '*');
+      env.response.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
       next(env);
     });
     handle('request', function(env, next) {
