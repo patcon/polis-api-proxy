@@ -1,24 +1,19 @@
 var argo = require('argo');
+var auth = require('basic-auth');
+var cors = require('./cors');
 
 argo()
-  .use(function(handle) {
-    handle('response', function(env, next) {
-      env.response.setHeader('Access-Control-Allow-Origin', '*');
-      env.response.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-      env.response.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, OPTIONS');
-      next(env);
-    });
+  .use(cors)
+  .target('https://api.pol.is')
+  .get('', function(handle) {
     handle('request', function(env, next) {
-      env.request.headers['Referer'] = '';
-      env.request.headers['Origin'] = 'https://api.pol.is';
-      console.log(env.request.headers);
+      var apiKey = env.request.headers['authorization'];
+      var username = apiKey;
+      var password = '';
+      var auth = 'Basic ' + new Buffer(username + ':' + password).toString('base64');
+      env.request.headers['authorization'] = auth;
+      console.log(env.request);
       next(env);
-    });
-    handle('error', function(env, error, next) {
-      console.log(error.message);
-      next(env);
-      process.exit();
     });
   })
-  .target('https://api.pol.is')
-  .listen(process.env.PORT);
+  .listen(process.env.PORT || 5000);
