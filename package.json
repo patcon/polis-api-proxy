@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "argo": "^1.0.0"
+    "argo": "^1.0.0",
+    "qs": "^6.3.0"
   }
 }
