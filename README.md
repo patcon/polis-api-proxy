@@ -12,7 +12,6 @@ These alternatives include:
 * Primary resource ID in path param rather than query param.
   * Before: `curl https://api.pol.is/api/v3/conversations?conversation_id=5mnfxu85hx -H Authorization:xxxxxxxx`
   * After: `curl https://api.pol.is/api/v3/conversations/5mnfxu85hx -H Authorization:xxxxxxxx`
-* Convert most resources into sub-resources of each specific conversation.
 * Sub-resource rather than top-level resources.
   * Before: `curl https://api.pol.is/api/v3/participants?conversation_id=5mnfxu85hx -H Authorization:xxxxxxxx`
   * After: `curl https://api.pol.is/api/v3/conversations/5mnfxu85hx/participants -H Authorization:xxxxxxxx`
