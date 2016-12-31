@@ -7,9 +7,15 @@ module.exports = function(handle) {
     var pathname = urlObj.pathname;
     var urlParts = pathname.split('/');
     if (urlParts[3] == 'conversations' && urlParts.length > 4) {
-      var conversation_id = urlParts.pop();
-      var obj = qs.stringify({conversation_id: conversation_id});
-      urlObj.search = obj;
+      var conversation_id = urlParts.splice(4, 1)[0];
+      if (urlParts.length > 4) {
+        // remove 'conversations' part from path
+        urlParts.splice(3, 1);
+      };
+      qsOrig = qs.parse(urlObj.query);
+      qsNew = { conversation_id: conversation_id };
+      var queryString = qs.stringify(Object.assign(qsOrig, qsNew));
+      urlObj.search = queryString;
       urlObj.pathname = urlParts.join('/');
       env.argo.currentUrl = urlObj.format();
     };
