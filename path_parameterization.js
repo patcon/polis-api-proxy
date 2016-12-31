@@ -10,8 +10,7 @@ module.exports = function(handle) {
     var obj = qs.stringify({conversation_id: conversation_id});
     urlObj.search = obj;
     urlObj.pathname = urlParts.join('/');
-    env.request.url = urlObj.format();
-    console.log(env.request.url);
+    env.argo.currentUrl = urlObj.format();
     next(env);
   });
 };
