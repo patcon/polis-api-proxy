@@ -18,6 +18,7 @@ module.exports = function(handle) {
       urlObj.search = queryString;
       urlObj.pathname = urlParts.join('/');
       env.argo.currentUrl = urlObj.format();
+      console.log(env.argo.currentUrl);
     };
     next(env);
   });
