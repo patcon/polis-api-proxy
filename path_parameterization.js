@@ -17,7 +17,6 @@ module.exports = function(handle) {
         console.log(_req.method);
         switch (_req.method) {
           case 'GET':
-          case 'OPTIONS':
           case 'HEAD':
             var newQuery = Object.assign(urlObj.query, convoParam);
             urlObj.search = qs.stringify(newQuery);
@@ -31,7 +30,11 @@ module.exports = function(handle) {
             _req.on('data', function(chunk) {
               body.push(chunk);
             }).on('end', function() {
-              body = Buffer.concat(body).toString();
+              if (body.length > 0) {
+                body = Buffer.concat(body).toString();
+              } else {
+                body = '{}';
+              };
               body = JSON.parse(body);
               body = Object.assign(body, convoParam);
               body = JSON.stringify(body);
