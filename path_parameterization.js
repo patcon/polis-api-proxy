@@ -17,6 +17,7 @@ module.exports = function(handle) {
         console.log(_req.method);
         switch (_req.method) {
           case 'GET':
+          case 'OPTIONS':
           case 'HEAD':
             var newQuery = Object.assign(urlObj.query, convoParam);
             urlObj.search = qs.stringify(newQuery);
