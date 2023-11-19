@@ -6,7 +6,6 @@ module.exports = function(handle) {
     next(env);
   });
   handle('request', function(env, next) {
-    env.request.headers['Referer'] = 'blah';
     env.request.headers['Origin'] = 'https://pol.is';
     next(env);
   });
