@@ -8,5 +8,5 @@ argo()
   .use(cors)
   .use(authConversion)
   .use(pathParameterization)
-  .target('https://api.pol.is')
+  .target('https://pol.is')
   .listen(process.env.PORT || 5000);
